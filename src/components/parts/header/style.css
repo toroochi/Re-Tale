@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kiwi+Maru&display=swap');
+
+.header {
+    justify-content: space-between;
+
+    font-family: "Kiwi Maru", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 100%;
+
+    /* flexboxで要素を真ん中に指定 */
+    display: flex;
+    width: 1300px;
+    margin: 0 0 0 auto;
+    position: fixed; /* ウィンドウを基準に画面に固定 */
+    top: 0; /* 上下の固定位置を上から0pxにする */
+}
+
+.header ul {
+    width: 100%;
+}
+
+.logo {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+
+    font-size: 50px;
+    padding-left: 5%;
+    transition: all 0.3s 0s ease;
+    text-decoration:none;
+    color:#47568F;
+}
+
+.logo:hover {
+    font-size: 52px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links--item {
+    margin: 0 55px;
+    transition: all 0.3s 0s ease;
+    font-size: 20px;
+    opacity: 1;
+    display: block;
+    float:left;
+    /* カーソルを離した際のアニメーションの速度調整 */
+    transition:.2s all;
+    position: relative;
+}
+
+.nav-links--item p {
+    height: 10px;
+    font-weight: 300;
+}
+
+.nav-links--item a {
+    color:#47568F;
+    /* リンク指定した要素のスタイルを削除 */
+    text-decoration:none;
+}
+
+.header:hover .nav-links--item {
+    /* ナビゲーションをマウスオーバーした際のアニメーションの動きを指定 */
+    opacity:.5;
+    /* 全てのボタンが少し小さくなる */
+    transform: scale(.98);
+}
+
+.header:hover .nav-links--item:hover {
+    transition: .5s;
+    /* hover時の速度調整 */
+    transform:scale(1.5);
+    /* hoverしたボタンのみサイズを拡大する指定 */
+    opacity:1;
+}
+
+.header:hover .nav-links--item:hover > p {
+    font-weight: bold;
+}
+
+
+
+
