@@ -3,13 +3,14 @@
 .button {
     background: #ece5da;
     border: none;
-    box-shadow:  20px 20px 40px #c9c3b9,
-                -20px -20px 40px #fffffb;
+    box-shadow:  10px 10px 20px #c9c3b9,
+                -10px -10px 20px #fffffb;
     font-family: "Kiwi Maru", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 100%;
     transition: all 0.3s 0s ease;
+    color: #47568F;
 }
 
 .button:hover {
@@ -17,9 +18,9 @@
     -5px -5px 10px #fffffb;
 }
 
-.button:active {
-    box-shadow: inset 20px 20px 40px #c9c3b9, 
-                inset -20px -20px 40px #fffffb;
+.button:focus {
+    box-shadow: inset 5px 5px 10px #c9c3b9, 
+                inset -5px -5px 10px #fffffb;
 }
 
 

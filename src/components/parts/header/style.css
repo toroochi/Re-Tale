@@ -75,7 +75,7 @@
     /* ナビゲーションをマウスオーバーした際のアニメーションの動きを指定 */
     opacity:.5;
     /* 全てのボタンが少し小さくなる */
-    transform: scale(.98);
+    transform: scale(.95);
 }
 
 .header:hover .nav-links--item:hover {
@@ -90,6 +90,19 @@
     font-weight: bold;
 }
 
+.nav-links--item a::after {
+    position: absolute;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #47568F;
+    bottom: -1px;
+    transform: scale(0, 1);
+    transform-origin: center top; /*変形（アンダーラインの伸長）の原点がaタグ（各メニュー）の右端*/
+    transition: transform 0.3s;   /*変形の時間*/
+}
 
-
-
+.nav-links--item a:hover::after {
+    transform: scale(1, 1); /*ホバー後、x軸方向に1（相対値）伸長*/
+}

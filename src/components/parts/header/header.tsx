@@ -23,7 +23,7 @@ const Header: FunctionComponent = () => {
                 <Link to="/user">ユーザー</Link>
                 </li>
                 <li className="nav-links--item">
-                <Link to="/">バグ報告</Link>
+                <Link to="/">要望フォーム</Link>
                 </li>
             </ul>
             </nav>

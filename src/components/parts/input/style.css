@@ -1,0 +1,43 @@
+.input {
+    border: none;
+    font-family: "Kiwi Maru", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 100%;
+    transition: all 0.3s 0s ease;
+    outline:none;
+    width: 300px;
+    height: 50px;
+}
+
+.input--newmophism {
+    border-radius: 50px;
+    background: #ece5da;
+    box-shadow: inset 2px 2px 5px #c9c3b9, 
+                inset -5px -5px 10px #fffffb;
+    color: #47568F;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.input--newmophism:focus {
+    padding-left: 35px;
+    padding-right: 35px;
+    box-shadow: inset 1px 1px 2px #c9c3b9,
+                inset -1px -1px 2px #fffffb;
+}
+
+.input--square {
+    background-image: linear-gradient(0deg, transparent calc(100% - 1px), #f0f0f0 calc(100% - 1px)),
+                        linear-gradient(90deg, transparent calc(100% - 1px), #f0f0f0 calc(100% - 1px));
+    background-size: 16px 16px;
+    background-repeat: repeat;
+    background-position: center center;
+
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+textarea {
+    padding:20px;
+}
