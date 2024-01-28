@@ -1,17 +1,33 @@
 import React, { FunctionComponent, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 import book from './book.png';
 
-const Novel: FunctionComponent = () => {
+interface NovelProps {
+    title?: string;
+    author?: string;
+    summary?: string;
+    content?: string;
+    link : string;
+}
+
+const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content, link }) => {
     return (
-        <div>
+        
+        <div className='novel'>
             <img src={book} className='bookimage'></img>
-            <p>タイトル</p>
-            <p>著者</p>
-            <p>あらすじ</p>
-            <button>詳細を見る</button>
+            <div className='contents'>
+                <div className='title'>
+                    <p>{title} : {author}</p>
+                </div>
+                <p>{summary}</p>
+                <div className='right'>
+                <Link to={link} className="background_btn04">{content}</Link>
+                </div>
+            </div>
         </div>
     )
 }
 
 export default Novel;
+

@@ -1,4 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+
+p {
+    font-family: "Kiwi Maru", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 100%;
+    color: #47568F;
+}
+
+.novel {
+    display: flex;
+    align-items: start; /* これにより、要素がコンテナの上部に揃えられます */
+    margin: auto;
+    width: 85%;
+    background: #ece5da;
+    border: none;
+    box-shadow:  5px 5px 10px #c9c3b9,
+                -2px -2px 5px #fffffb;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+}
+
+.contents {
+    margin-left: 50px;
+}
+
 .bookimage {
-    width: 150px;
-    height: 150px;
+    padding-top: 10px;
+    padding-left: 30px;
+    width: 120px;
+    height: 120px;
+}
+
+.background_btn04 {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 350px; /* ボタン幅 */
+    padding: 1em 2em;
+    background: #dcd4c5; /* 背景色 */
+    text-decoration: none;
+    border-radius: 0.5em;
+    color: #47568F; /* 文字色 */
+    box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    text-align: center; /* 文字の太さ */
+    font-family: "Kiwi Maru", serif;
+}
+
+/* マウスオーバーした際のデザイン */
+.background_btn04::before {
+position: absolute;
+content: '';
+height: 0;
+width: 0;
+top: 0;
+left: 0;
+background: linear-gradient(135deg, #ece5da 0%, #ece5da 50%); /* めくれた色 */
+border-radius: 0 0 0.5em 0;
+box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+transition: 0.3s;
+}
+.background_btn04:hover::before {
+width: 2em;
+height: 2em;
+}
+
+/* クリックした際のデザイン */
+.background_btn04:active {
+box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+transform: translate(1px, 1px);
+}
+
+.right {
+    padding-left: 750px;
+}
+
+.title {
+    font-size: 20px;
 }

@@ -6,7 +6,7 @@ const Header: FunctionComponent = () => {
     return (
         <header className="header">
         <Link to="/" className="logo">
-            Re:Tale
+            Re : Tale
             </Link>
             <nav>
             <ul className="nav-links">

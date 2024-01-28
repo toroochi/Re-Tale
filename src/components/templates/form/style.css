@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+
+.form {
+    background: #ece5da;
+    border: none;
+    box-shadow:  5px 5px 10px #c9c3b9,
+                -2px -2px 5px #fffffb;
+}
+
+h2 {
+    font-family: "Kiwi Maru", serif;
+    color: #47568F;
+}
