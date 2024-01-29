@@ -27,6 +27,7 @@ const Header: FunctionComponent = () => {
                 </li>
             </ul>
             </nav>
+            <br></br>
         </header>
     )
 }

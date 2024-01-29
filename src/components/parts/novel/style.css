@@ -10,7 +10,7 @@ p {
 
 .novel {
     display: flex;
-    align-items: start; /* これにより、要素がコンテナの上部に揃えられます */
+    align-items: start;
     margin: auto;
     width: 85%;
     background: #ece5da;

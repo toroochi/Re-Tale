@@ -5,9 +5,40 @@
     border: none;
     box-shadow:  5px 5px 10px #c9c3b9,
                 -2px -2px 5px #fffffb;
-}
-
-h2 {
+    flex-flow: column;
+    width: 30%;
+    border-radius: 20px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-family: "Kiwi Maru", serif;
     color: #47568F;
+}
+
+.height {
+    flex-flow: column;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.link {
+    padding-bottom: 15px;
+    background:
+        radial-gradient(circle closest-side, currentColor 80%, transparent) bottom 0 left calc(50% - var(--d, 0px)/2) /100% 8px no-repeat,
+        radial-gradient(circle closest-side, currentColor 80%, transparent) bottom 0 left calc(50% + var(--d, 0px)/2) /100% 8px no-repeat,
+        linear-gradient(currentColor 0 0) bottom /var(--d, 0%) 8px no-repeat;
+    transition: 0.5s;
+    text-decoration: none;
+    color: #47568F;
+}
+
+.link:hover {
+    --d: 50px;
+}
+
+.link:active {
+    color: rgb(48, 119, 119);
 }

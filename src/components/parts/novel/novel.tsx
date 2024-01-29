@@ -9,11 +9,11 @@ interface NovelProps {
     summary?: string;
     content?: string;
     link : string;
+    className?: string;
 }
 
-const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content, link }) => {
+const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content, link, className=''}) => {
     return (
-        
         <div className='novel'>
             <img src={book} className='bookimage'></img>
             <div className='contents'>

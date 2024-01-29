@@ -18,11 +18,19 @@ const Form: FunctionComponent<FormProps> = ({className,content,message,linkPath,
     return (
         <div className={className}>
             <div className='form'>
-                <h2>{content}</h2>
-                <Input placeholder='メールアドレス' type='text'></Input>
-                <Input placeholder='パスワード' type='password'></Input>
-                <Link to={linkPath} onClick={onClick}>{message}</Link>
-                <Button className='size'>{logsign}</Button>
+                <h1>{content}</h1>
+                <div className='height'>
+                    <Input placeholder='メールアドレス' type='text'></Input>
+                </div>
+                <div className='height'>
+                    <Input placeholder='パスワード' type='password'></Input>
+                </div>
+                <div className='height'>
+                    <Link to={linkPath} onClick={onClick} className='link'>{message}</Link>
+                </div>
+                <div className='height'>
+                    <Button className='size'>{logsign}</Button>
+                </div>
             </div>
         </div>
     )
