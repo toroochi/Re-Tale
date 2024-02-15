@@ -1,0 +1,12 @@
+.toplogo {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-size: 150px;
+    padding-left: 5%;
+    transition: all 0.3s 0s ease;
+    text-decoration:none;
+    color: #f1ebe5;
+    text-shadow: 0 3px 5px #c4b59d,0 -2px 1px #fff;
+}

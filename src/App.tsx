@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import "./App.css";
 import Novel from './components/parts/novel/novel';
 import Form from './components/templates/form/form';
+import Logo from './components/parts/logo/logo';
 
 const App: FunctionComponent = () => {
   const [formContent, setFormContent] = useState('ログイン');
@@ -37,6 +38,7 @@ const App: FunctionComponent = () => {
           <Input theme={InputThemes.SQUARE} placeholder='ログイン'></Input>
           <Novel title='あ' author='a' summary='a' content='続きを書く' link=''></Novel>
           <Form content={formContent} message={formMessage} linkPath='#' onClick={handleClick} logsign={formLogsign}></Form>
+          <Logo></Logo>
         </div>
       </body>
     </Router>

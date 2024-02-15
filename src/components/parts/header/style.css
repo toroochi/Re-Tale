@@ -14,6 +14,7 @@
     top: 0; /* 上下の固定位置を上から0pxにする */
     background: #ece5da;
     box-shadow:  5px 5px 10px #c9c3b9;
+    z-index: 1;
 }
 
 .header ul {
