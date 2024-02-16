@@ -1,0 +1,25 @@
+body {
+    background-color: #ece5da;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.logoPosition {
+    margin-right: 150px;
+}
+
+.infolink {
+    font-family: "Kiwi Maru", serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px;
+    color: #47568F;
+    margin-bottom: 0;
+    text-align: center;
+}

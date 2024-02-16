@@ -5,6 +5,8 @@ interface ButtonProps {
     theme?: ButtonThemes;
     className?: string;
     children: ReactNode;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
+    type?: string;
 }
 
 
@@ -19,8 +21,8 @@ enum ModifierClassNames {
     BOX = 'button--box',
 }
 
-const Button: FunctionComponent<ButtonProps> = ({ theme = ButtonThemes.BOX, className = '', children }) => (
-    <button className={['button', ModifierClassNames[theme]].join(' ')}>{children}</button>
+const Button: FunctionComponent<ButtonProps> = ({ theme = ButtonThemes.BOX, className = '', children,onClick, type}) => (
+    <button className={['button', ModifierClassNames[theme]].join(' ')} onClick={onClick} >{children}</button>
 );
 
 export default Button;

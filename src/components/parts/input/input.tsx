@@ -6,6 +6,8 @@ interface InputProps {
     className?: string;
     placeholder?: string;
     type?: string;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export enum InputThemes {
@@ -18,8 +20,8 @@ enum ModifierClassNames {
     SQUARE = 'input--square',
 }
 
-const Input: FunctionComponent<InputProps> = ({ theme = InputThemes.NEWMOPHISM, className = '', placeholder = '', type = ''}) => (
-    <input className={['input', ModifierClassNames[theme]].join(' ')} placeholder={placeholder} type={type}></input>
+const Input: FunctionComponent<InputProps> = ({ theme = InputThemes.NEWMOPHISM, className = '', placeholder = '', type = '',onChange}) => (
+    <input className={['input', ModifierClassNames[theme]].join(' ')} placeholder={placeholder} type={type} onChange={onChange}></input>
 );
 
 
