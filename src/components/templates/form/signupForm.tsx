@@ -6,9 +6,9 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { auth } from '../../views/firebase';
+
 import {
     createUserWithEmailAndPassword,
-    onAuthStateChanged,
     getAuth
 } from "firebase/auth";
 import { Link, useNavigate} from 'react-router-dom';
@@ -25,7 +25,7 @@ interface FormProps {
 const SignUpForm: FunctionComponent<FormProps> = ({className,content,message}) => {
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [user, setUser] = useState<firebase.User | null>(null);
+    const [username, setUsername] = useState("");
     const [inputValue, setInputValue] = useState('');
 
     const db = getFirestore();
@@ -40,6 +40,12 @@ const SignUpForm: FunctionComponent<FormProps> = ({className,content,message}) =
             registerEmail,
             registerPassword
         );
+        const uid = userCredential.user.uid;
+        setUsername(inputValue);
+        await setDoc(doc(db, "users", uid), {
+            username: inputValue,
+        });
+
         } catch(error) {
             console.log(error)
         }
@@ -59,6 +65,7 @@ const SignUpForm: FunctionComponent<FormProps> = ({className,content,message}) =
                     <Input
                     placeholder='ユーザーネーム'
                     type='text'
+                    onChange={handleInputChange}
                     ></Input>
                 </div>
                 <div className='height'>
