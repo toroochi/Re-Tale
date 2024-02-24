@@ -10,9 +10,10 @@ interface NovelProps {
     content?: string;
     link : string;
     className?: string;
+    tags?: string[];
 }
 
-const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content, link, className=''}) => {
+const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content, link, className='', tags=[]}) => {
     return (
         <div className='novel'>
             <img src={book} className='bookimage'></img>
@@ -21,6 +22,11 @@ const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content,
                     <p>{title} : {author}</p>
                 </div>
                 <p>{summary}</p>
+                <div className='tags'>
+                    {tags.map((tag, index) => (
+                        <Link key={index} to={`/tag/${tag}`} className="tag">{tag}</Link>
+                    ))}
+                </div>
                 <div className='right'>
                 <Link to={link} className="background_btn04">{content}</Link>
                 </div>
@@ -30,4 +36,3 @@ const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content,
 }
 
 export default Novel;
-

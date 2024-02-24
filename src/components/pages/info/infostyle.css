@@ -2,16 +2,4 @@ img {
     width: 15%;;
 }
 
-.title {
-    font-family: "Kiwi Maru", serif;
-    font-weight: bold;
-    font-style: normal;
-    font-size: 40px;
-    color: #47568F;
-    margin-bottom: 0;
-    text-align: center;
 
-    background:linear-gradient(transparent 50%, rgba(255, 243, 5, 0.5) 50%);
-    display: inline; 
-    
-}

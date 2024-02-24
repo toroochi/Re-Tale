@@ -7,28 +7,35 @@ import {
     deleteUser,
 } from "firebase/auth";
 import { auth } from '../../views/firebase';
-import { doc, getDoc } from "firebase/firestore";
 import Button from '../../parts/button/button';
 import Novel from '../../parts/novel/novel';
-import './style.css';
 
 
-const Main: FunctionComponent = () => {
+const UserSetting: FunctionComponent = () => {
     const [user, setUser] = useState("");
 
     const navigate = useNavigate();
+    const logout = async () => {
+        console.log("logout function called"); // Add this line
+        try {
+            await signOut(auth);
+            navigate("/login");
+        } catch (error) {
+            console.error("Error signing out: ", error);
+        }
+        console.log("logout function completed"); // Add this line
+    };
+    
 
     return(
         <body>
             <Header></Header>
             <div className='box'>
-            
-            <p>新着の小説</p>
+            <Button children="ログアウト" onClick={logout}></Button>
             <Novel link='/' content='中身を見る' title='a' summary='a' author='a'></Novel>
-            <p>完結している小説</p>
             </div>
         </body>
     )
 }
 
-export default Main;
+export default UserSetting;

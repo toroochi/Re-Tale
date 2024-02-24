@@ -14,7 +14,7 @@ const Header: FunctionComponent = () => {
                 <Link to="/">ホーム</Link>
                 </li>
                 <li className="nav-links--item">
-                <Link to="/info">概要</Link>
+                <Link to="/about">概要</Link>
                 </li>
                 <li className="nav-links--item">
                 <Link to="/writting">執筆</Link>
