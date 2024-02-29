@@ -51,11 +51,12 @@ const Writtingform = () => {
 
     const handleAddition = (tag: ITag) => {
         if (tag.text.length <= 10) {
-            setTags([...tags, tag]);
+            setTags((prevTags) => [...prevTags, tag]); 
         } else {
             alert("タグは10文字以下である必要があります");
         }
     }
+    
 
     useEffect(() => {
         const fetchPosts = async () =>{
@@ -184,7 +185,14 @@ const Writtingform = () => {
             <Header></Header>
             <div className='box'>
                 <p className='context'>物語を執筆する</p>
-                    <Input theme={InputThemes.SQUARE} placeholder="タイトルを入力してください" className='input' value={title}></Input>
+                <Input 
+                    theme={InputThemes.SQUARE} 
+                    placeholder="タイトルを入力してください" 
+                    className='input' 
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+
                     <div className='editorContainer'>
                         <Editor
                             placeholder="本文を入力してください"

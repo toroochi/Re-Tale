@@ -78,12 +78,20 @@ const Writting: FunctionComponent = () => {
         if (!draft || !draft.blocks) {
             return '';
         }
-        const text = draft.blocks.map((block: any) => {
-            console.log(block);  // ブロックの内容をログに出力
-            return block.text;
-        }).join('\n');
-        return text;
+    
+        let text = '';
+        draft.blocks.forEach((block: any) => {
+            if (block.text !== '') {
+                text += block.text + '\n';
+            }
+        });
+    
+        return text.trim(); // 最後の改行を削除して返す
     }
+    
+    
+    
+    
     
     return(
         <body>
@@ -94,20 +102,16 @@ const Writting: FunctionComponent = () => {
                     <Button children="執筆中" onClick={() => setIsCompleted(false)}></Button>
                     <Button children="投稿済み" onClick={() => setIsCompleted(true)}></Button>
                     <Button children="続けた物語"></Button>
-                    {posts.map((post) => (
-                        <button onClick={() => handlePostClick(post)}>aaa</button>
-                    ))}
                 </div>
                 {posts.map((post) => (
                 <Novel 
                     key={post.id}
                     link={`/writtingform/${post.id}`}
-                    content="編集する"
+                    content="詳細を見る"
                     title={post.title}
-                    summary={convertDraftToText(post.summary)}
                     author={post.created}
                     className='novel'
-                    tags={post.tags}
+                    tags={post.tags.map(tag => tag.text)}
                 />
             ))}
                 <div style={{position: 'fixed', right: '20px', bottom: '20px'}}>

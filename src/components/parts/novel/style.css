@@ -80,3 +80,20 @@ transform: translate(1px, 1px);
 .title {
     font-size: 20px;
 }
+
+.tag {
+    font-family: "Kiwi Maru", serif;
+    display: inline-block;
+	margin: 0 .1em .6em 0;
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color: #47568F;
+	background-color: #f8f4ec;
+	border: 1px solid #47568F;
+	border-radius: 2em;
+}
+
+.tag:hover {
+    background-color: #e4e1da;
+}
