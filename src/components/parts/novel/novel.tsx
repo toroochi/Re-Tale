@@ -8,14 +8,15 @@ interface NovelProps {
     author?: string;
     summary?: string;
     content?: string;
-    link : string;
+    link? : string;
     className?: string;
     tags?: string[];
+    onClick?: () => void;
 }
 
-const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content, link, className='', tags=[]}) => {
+const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content, className='', tags=[], onClick}) => {
     return (
-        <div className='novel'>
+        <div className='novel' >
             <img src={book} className='bookimage'></img>
             <div className='contents'>
                 <div className='title'>
@@ -24,11 +25,11 @@ const Novel: FunctionComponent<NovelProps> = ({ title, author, summary, content,
                 <p>{summary}</p>
                 <div className='tags'>
                     {tags.map((tag, index) => (
-                        <Link key={index} to={`/tag/${tag}`} className="tag">{tag}</Link>
+                        <Link key={index} to={`/writting/${tag}`} className="tag">{tag}</Link>
                     ))}
                 </div>
                 <div className='right'>
-                <Link to={link} className="background_btn04">{content}</Link>
+                <button className="background_btn04" onClick={onClick}>{content}</button>
                 </div>
             </div>
         </div>

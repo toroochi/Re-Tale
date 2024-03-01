@@ -23,7 +23,7 @@ const Header: FunctionComponent = () => {
                 <Link to="/user">ユーザー</Link>
                 </li>
                 <li className="nav-links--item">
-                <Link to="/">要望フォーム</Link>
+                <a href='https://forms.gle/UL6gNuatsDH2mb7p6'>要望フォーム</a>
                 </li>
             </ul>
             </nav>

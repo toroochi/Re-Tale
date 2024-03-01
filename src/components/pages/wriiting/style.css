@@ -56,4 +56,29 @@
     font-family:  "Kiwi Maru", serif; 
 }
 
+.center-counter {
+    text-align: center;
+}
 
+.editor-z {
+    z-index: -1;
+}
+
+.title-text {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.main-text {
+    text-align: center;
+
+}
+.content-text {
+    max-width:800px;
+    margin:0 auto;
+}
+
+.title-box {
+    background-color: #f8f6f3;
+}

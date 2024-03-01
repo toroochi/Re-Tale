@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import './style.css';
 import {Link, useNavigate, useLocation, useParams} from "react-router-dom";
-import { Editor, EditorState, ContentState, convertToRaw} from 'draft-js';
+import { Editor, EditorState, ContentState, convertToRaw, convertFromRaw} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import firebase from 'firebase/compat';
 import {collection,addDoc,doc,getDoc, updateDoc,onSnapshot} from "firebase/firestore"
@@ -44,6 +44,7 @@ const Writtingform = () => {
     const {id} = useParams();
     const [tags, setTags] = useState<ITag[]>([]);
     const [summaryEditorState, setSummaryEditorState] = useState(() => EditorState.createEmpty());
+    const [summaryTextLength, setSummaryTextLength] = useState(0);
 
     const handleDelete = (i: number) => {
         setTags(tags.filter((tag, index) => index !== i));
@@ -56,6 +57,21 @@ const Writtingform = () => {
             alert("タグは10文字以下である必要があります");
         }
     }
+
+    const handleSummaryChange = (newEditorState: EditorState) => {
+        const contentState = newEditorState.getCurrentContent();
+        const text = contentState.getPlainText();
+        setSummaryTextLength(text.length);
+        setSummaryEditorState(newEditorState);
+    
+        // 文字数が制限を超える場合は、入力を制限する
+        if (text.length > 300) {
+            // 300文字を超える場合、入力を制限する
+            const newContentState = ContentState.createFromText(text.slice(0, 300));
+            const truncatedEditorState = EditorState.push(newEditorState, newContentState, 'remove-range');
+            setSummaryEditorState(truncatedEditorState);
+        }
+    };
     
 
     useEffect(() => {
@@ -66,12 +82,17 @@ const Writtingform = () => {
                     const postData = postDox.data();
                     setTitle(postData.title);
                     setContent(postData.content);
+                    setSummaryEditorState(postData.summary);
+                    setTags(postData.tags);
                     setPostId(id);
     
                     // postData.contentをエディターに反映
-                    const contentState = ContentState.createFromText(postData.content);
+                    const contentState = postData.content ? convertFromRaw(JSON.parse(postData.content)) : ContentState.createFromText("");
+                    const summaryContentState = postData.summary ? convertFromRaw(JSON.parse(postData.summary)) : ContentState.createFromText("");
                     const newEditorState = EditorState.createWithContent(contentState);
+                    const newSummaryEditorState = EditorState.createWithContent(summaryContentState);
                     setEditorState(newEditorState);
+                    setSummaryEditorState(newSummaryEditorState);
                 }
             }
         };
@@ -126,8 +147,8 @@ const Writtingform = () => {
         const yesNoFlg = window.confirm("投稿してもよろしいですか？");
         if (yesNoFlg) {
             // contentとtitleが空でないことを確認
-            if (!content || !title) {
-                toast.error("内容とタイトルを入力してください。");
+            if (!content || !title || !summaryEditorState) {
+                toast.error("内容とタイトル、あらすじを入力してください。");
                 return;
             }
     
@@ -192,21 +213,25 @@ const Writtingform = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-
                     <div className='editorContainer'>
                         <Editor
+    
                             placeholder="本文を入力してください"
                             editorState={editorState}
                             onChange={setEditorState}
                         />
                     </div>
+                    <div className='center-counter'><p>あらすじ文字数: {summaryTextLength}/300</p></div>
                     <div className='editorContainer'>
                         <Editor
-                            placeholder="あらすじを入力してください(任意)"
+                            placeholder="あらすじを入力してください"
                             editorState={summaryEditorState}
-                            onChange={setSummaryEditorState}
+                            onChange={handleSummaryChange}
                         />
+                        
                     </div>
+                    
+
                     <div className='react-tag-input__tag__content'>
                     <DndProvider backend={HTML5Backend}>
                         <ReactTags 

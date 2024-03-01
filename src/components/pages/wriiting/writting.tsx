@@ -14,6 +14,7 @@ import './style.css';
 import {getAuth, User} from "firebase/auth";
 import db from "../../views/firebase"
 import { Editor, EditorState, convertToRaw, convertFromRaw} from "draft-js";
+import Popup from '../../parts/popup/popup';
 
 interface Post {
     id: string;
@@ -34,6 +35,8 @@ const getStrTime = (time: number): string => {
 
 const Writting: FunctionComponent = () => {
     const [selectedPosts, setSelectedPosts] = useState<Post[]>([]);
+    const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+    const [usernames, setUsernames] = useState<{[key: string]: string}>({});
 
     const auth = getAuth();
     const user: User | null = auth.currentUser;
@@ -41,6 +44,8 @@ const Writting: FunctionComponent = () => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState<Post[]>([]);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
+    const [content, setContent] = useState(() => EditorState.createEmpty());
+    
 
     const fetchPosts = (isCompleted: boolean) => {
         const user = auth.currentUser;
@@ -58,13 +63,21 @@ const Writting: FunctionComponent = () => {
             });
         }
     }
-    
-    
 
+    
     useEffect(() => {
         fetchPosts(isCompleted);
+        // ユーザー名を取得して状態に設定
+        const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
+            const fetchedUsernames: {[key: string]: string} = {};
+            snapshot.forEach((doc) => {
+                fetchedUsernames[doc.id] = doc.data().username;
+            });
+            setUsernames(fetchedUsernames);
+        });
+        return () => unsubscribe();
     }, [isCompleted]);
-    
+
     const handlePostClick = (post: Post) => {
         console.log(post);
         if (post.isCompleted) {
@@ -74,46 +87,56 @@ const Writting: FunctionComponent = () => {
         }
     }
 
-    const convertDraftToText = (draft: any) => {
-        if (!draft || !draft.blocks) {
+    const handlePopupClick = (post: Post) => {
+        setSelectedPost(post);
+        console.log(post.summary);
+    };
+
+    const convertDraftToText = (summary: string) => {
+        if (!summary) {
             return '';
-        }
-    
-        let text = '';
-        draft.blocks.forEach((block: any) => {
-            if (block.text !== '') {
-                text += block.text + '\n';
             }
-        });
-    
-        return text.trim(); // 最後の改行を削除して返す
-    }
-    
-    
-    
-    
+        
+            const contentState = convertFromRaw(JSON.parse(summary));
+            const editorState = EditorState.createWithContent(contentState);
+            const plainText = editorState.getCurrentContent().getPlainText();
+        
+            return plainText.trim();
+        }
+        
     
     return(
         <body>
             <Header></Header>
             <div className='box'>
-                <p className='context'>あなたの物語</p>
+                <p className='context'>物語を執筆する</p>
                 <div className="containerbutton">
                     <Button children="執筆中" onClick={() => setIsCompleted(false)}></Button>
                     <Button children="投稿済み" onClick={() => setIsCompleted(true)}></Button>
                     <Button children="続けた物語"></Button>
                 </div>
                 {posts.map((post) => (
-                <Novel 
-                    key={post.id}
-                    link={`/writtingform/${post.id}`}
-                    content="詳細を見る"
-                    title={post.title}
-                    author={post.created}
-                    className='novel'
-                    tags={post.tags.map(tag => tag.text)}
-                />
-            ))}
+                    <div key={post.id}>
+                        <Novel 
+                            content="詳細を見る"
+                            title={post.title}
+                            author={usernames[post.created]}
+                            className='novel'
+                            tags={post.tags.map(tag => tag.text)}
+                            onClick={() => handlePopupClick(post)}
+                        />
+                    </div>
+                ))}
+
+                {selectedPost && (
+                    <Popup
+                        title={selectedPost.title}
+                        content={convertDraftToText(selectedPost.summary)}
+                        onClose={() => setSelectedPost(null)}
+                        onClick={() => handlePostClick(selectedPost)}
+                    />
+                )}
+
                 <div style={{position: 'fixed', right: '20px', bottom: '20px'}}>
                 <Link to={"/writtingform"}><Button children="執筆" theme={ButtonThemes.CIRCLE} className='post-button' ></Button></Link>
                 </div>

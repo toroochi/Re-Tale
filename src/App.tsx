@@ -11,6 +11,8 @@ import Login from './components/pages/register/login';
 import UserSetting from './components/pages/user/User';
 import Writting from './components/pages/wriiting/writting';
 import WrittingForm from './components/pages/wriiting/writtingform';
+import View from './components/pages/wriiting/view';
+import About from './components/pages/about/about';
 import { config } from 'localforage';
 
 type UserType = User | null;
@@ -37,7 +39,9 @@ const App: FunctionComponent = () => {
         <Route path={'/login'} element={<Login />}></Route>
         <Route path={'/user'} element={<UserSetting />}></Route>
         <Route path={'/writting'} element={<Writting />}></Route>
-        <Route path={'/writtingform'} element={<WrittingForm />}></Route>
+        <Route path="/writtingform/:id?" element={<WrittingForm />} />
+        <Route path="/view/:id?" element={<View />} />
+        <Route path={'/about'} element={<About />}></Route>
       </Routes>
     </BrowserRouter>
   );

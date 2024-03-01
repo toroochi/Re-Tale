@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { BrowserRouter, Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 
+
 import Header from '../../parts/header/header';
 import Button from '../../parts/button/button';
 
@@ -8,11 +9,10 @@ import WritteImage from '../../images/1.png'
 import PostImage from '../../images/2.png';
 import RelayImage from '../../images/3.png';
 import ReadImage from '../../images/4.png';
-import './infostyle.css';
+import "./style.css"
 
 
-
-const Info: FunctionComponent = () => {
+const About: FunctionComponent = () => {
     return(
         <body>
             <Header></Header>
@@ -45,4 +45,4 @@ const Info: FunctionComponent = () => {
     )
 }
 
-export default Info;
+export default About;

@@ -4,13 +4,14 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDt8NeVLrRx2bbbfChZN-rgiBSl1rlSB3I",
-    authDomain: "tsumugu-f9053.firebaseapp.com",
-    projectId: "tsumugu-f9053",
-    storageBucket: "tsumugu-f9053.appspot.com",
-    messagingSenderId: "428231834583",
-    appId: "1:428231834583:web:8f82ae8f2faabad3cfe992",
-    measurementId: "G-PY08WXESK8"
+    apiKey: "AIzaSyDgNQ2tqNZS3CkO80FOpkmIFImXE1v-8dk",
+    authDomain: "geek-7a11f.firebaseapp.com",
+    databaseURL: "https://geek-7a11f-default-rtdb.firebaseio.com",
+    projectId: "geek-7a11f",
+    storageBucket: "geek-7a11f.appspot.com",
+    messagingSenderId: "781971796878",
+    appId: "1:781971796878:web:c88408d7052ca605e1eadf",
+    measurementId: "G-HRV24FTLRR"
 };
 
 // Initialize Firebase
