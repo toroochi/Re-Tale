@@ -25,6 +25,7 @@ const App: FunctionComponent = () => {
     const authStateChanged = auth.onAuthStateChanged((user) => {
       console.log(user?.email)
       setUser(user);
+      
     });
     return () => {
       authStateChanged();

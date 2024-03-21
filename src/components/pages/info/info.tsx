@@ -15,7 +15,6 @@ import './infostyle.css';
 const Info: FunctionComponent = () => {
     return(
         <body>
-            <Header></Header>
             
             <div className='box'>
                 <div className='box-conteinar'>

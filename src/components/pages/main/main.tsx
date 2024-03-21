@@ -44,6 +44,7 @@ const Main: FunctionComponent = () => {
 
     const fetchPosts = (isCompleted: boolean) => {
         const user = auth.currentUser;
+        console.log(process.env.REACT_APP_APIKEY)
         if (user) {
             const uid = user.uid;
             const postsRef = collection(db, 'posts');
